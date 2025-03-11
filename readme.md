@@ -2,10 +2,6 @@
 
 I had for some time a website and youtube archive of thousands of hours of thermal testing. I not longer invest time in testing as there are a ton of channels and groups doing this now but I wanted somewhere to park my data.
 
-
-
-
-
 # GPU Thermal Density
 
 Looking at wattage is not a great indicator of how easy or hard it will be to cool a GPU. 300 watts on a small die is nearly impossible to cool vs 300 watts on a large die if the coolers are the same size. I will often use "Watts Per mm Squared" as a good starting point to understand what type of cooling performance a GPU die will require and in a lot of cases which thermal paste/interface I will plan on using.
