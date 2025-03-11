@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Independent Thermal Testing</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #1e1e1e;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        th {
+            cursor: pointer;
+            background-color: #333;
+        }
+        th:hover {
+            background-color: #444;
+        }
+        .filters {
+            margin-bottom: 10px;
+        }
+        .filters select {
+            margin-right: 10px;
+            background-color: #333;
+            color: #e0e0e0;
+            border: 1px solid #444;
+            padding: 5px;
+        }
+        .filters select option {
+            background-color: #333;
+            color: #e0e0e0;
+        }
+        .heading {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .heading h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: #e0e0e0;
+        }
+        .heading h2 {
+    font-size: 1.5em;
+    margin: 0 0 20px 0; /* Add bottom margin */
+    color: #888;
+}
+    .blurb {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #aaa;
+}
+
+        a {
+            color: #1e90ff;
+        }
+        a:hover {
+            color: #63a4ff;
+        }
+
+        .tier-chart {
+            width: auto;
+            margin: 0 auto;
+        }
+        .tier {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .tier h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+            color: #888;
+        }
+        .tier.s-tier h2 {
+            color: gold;
+        }
+        .tier ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 items wide */
+            gap: 10px; /* Space between items */
+        }
+        .tier ul li {
+            background-color: #333;
+            margin-bottom: 5px;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        .instructions {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #333;
+        }
+        .instructions p {
+            margin: 0 0 10px 0;
+        }
+        .code-box {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            overflow-x: auto;
+        }
+        .code-box pre {
+            margin: 0;
+            color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="heading">
+        <h1>The Thermal Channel</h1>
+        <h2>Independent Thermal Testing</h2>
+    </div>
+
+
+    <div class="blurb">
+        <p>For testing or inquiries, please visit our <a href="https://www.youtube.com/@The_Thermal_Channel" target="_blank">YouTube channel</a>.</p>
+        <p>We provide detailed reviews and testing results for various thermal interfaces. Contact info can be found in our YouTube channel details.</p>
+    </div>
+
+    <div class="blurb">
+        <p><a href="https://www.thethermalchannel.com">Thermal Testing Results</a>.</p>
+ </div>
+
+    <br>
+    
+    <div class="heading">
+        <h2>Windows 11 – Running Intel ARC On Pytorch 2024</h2>
+    </div>
+
+
+    <div class="instructions">
+
+<p>Requirements</p>
+<div class="code-box">
+<pre>
+Windows 11
+
+Intel GPU: Arc Alchemist or Battlemage dGPU. Tested on A770 16GB.
+
+ARC Driver: 32.0.101.6314 or later
+
+Miniconda (Not required but this is what I will use to setup my virtual environment)
+</pre>
+</div>
+<br>
+
+<p>Step 1: Create Conda Environment Named "xpu"</p>
+<div class="code-box">
+<pre>
+conda create -n xpu python=3.12
+
+conda activate xpu
+</pre>
+</div>
+<br>
+
+<p>Step 2: Navigate To Data Folder</p>
+<div class="code-box">
+<pre>
+This will be where Jupyter Lab stores files
+
+In my example this is located at G:\GIT\public\XPUTEST
+</pre>
+</div>
+<br>
+
+<p>Step 3: Install The Following Packages</p>
+<div class="code-box">
+<pre>
+pip3 install --pre torch torchvision torchaudio torchdata safetensors matplotlib pillow numpy --index-url https://download.pytorch.org/whl/nightly/xpu
+
+pip install jupyterlab accelerate diffusers tqdm IProgress transformers
+
+jupyter lab
+</pre>
+</div>
+<br>
+
+<p>Step 4: Open A Test Notebook In Jupyter Lab</p>
+<div class="code-box">
+<pre>
+Execute the following code, it will take a minute to run:
+
+# This should return "True" if the ARC GPU is detected
+import torch
+torch.xpu.is_available()
+</pre>
+</div>
+<br>
+
+<p>Step 5: Run A Test Load Against ARC</p>
+<div class="code-box">
+<pre>
+In a new cell run the following code:
+
+import torch
+import time
+
+matrix_size = 3000
+loops = 10
+
+torch.manual_seed(42)
+torch.xpu.manual_seed(42)
+device_cpu = torch.device("cpu")
+A_cpu = torch.randn(matrix_size, matrix_size, device=device_cpu)
+B_cpu = torch.randn(matrix_size, matrix_size, device=device_cpu)
+
+start_time = time.time()
+for _ in range(loops):
+    with torch.autocast(device_type="cpu", enabled=False):
+        mul = torch.matmul(A_cpu, B_cpu)
+cpu_time = time.time() - start_time
+print(f"CPU time: {cpu_time:.8f}")
+
+torch.manual_seed(42)
+torch.xpu.manual_seed(42)
+device_xpu = torch.device("xpu")
+A_xpu = torch.randn(matrix_size, matrix_size, device=device_xpu)
+B_xpu = torch.randn(matrix_size, matrix_size, device=device_xpu)
+
+start_time = time.time()
+for _ in range(loops):
+    with torch.autocast(device_type="xpu", dtype=torch.float16, enabled=True):
+        mul = torch.matmul(A_xpu, B_xpu)
+xpu_time = time.time() - start_time
+print(f"XPU time: {xpu_time:.8f}")
+</pre>
+</div>
+<br>
+
+<p>Basic Stable Diffusion Example</p>
+<div class="code-box">
+<pre>
+torch.xpu.empty_cache()
+
+device = torch.device("xpu" if torch.xpu.is_available() else "cpu")
+
+from diffusers import StableDiffusionPipeline, StableDiffusionImg2ImgPipeline
+
+model_id = "runwayml/stable-diffusion-v1-5"
+
+stable_diffusion_txt2img = StableDiffusionPipeline.from_pretrained(model_id, use_safetensors=True,
+    safety_checker=None,
+    feature_extractor=None,
+    requires_safety_checker=False,)
+
+components = stable_diffusion_txt2img.components
+
+stable_diffusion_img2img = StableDiffusionImg2ImgPipeline(**components)
+
+stable_diffusion_txt2img_custom = StableDiffusionPipeline(
+    vae=stable_diffusion_txt2img.vae,
+    text_encoder=stable_diffusion_txt2img.text_encoder,
+    tokenizer=stable_diffusion_txt2img.tokenizer,
+    unet=stable_diffusion_txt2img.unet,
+    scheduler=stable_diffusion_txt2img.scheduler,
+    safety_checker=None,
+    feature_extractor=None,
+    requires_safety_checker=False,
+).to(device)
+
+print(device)
+
+import numpy as np
+from IPython.display import display
+import torch
+
+
+prompt = "race car drifting"
+negative_prompt = ""
+num_inference_steps = 30
+num_images_per_prompt = 1
+guidance_scale = 7.5
+strength = 0.7
+height = 512
+width = 512
+
+# Generate an initial image
+initial_image = stable_diffusion_txt2img(prompt=prompt,
+                                         strength=strength,
+                                         num_inference_steps=num_inference_steps,
+                                         guidance_scale=guidance_scale,
+                                         height=height, width=width)[0]
+
+display(initial_image[0])
+
+# Refine the image using the img2img pipeline
+refined_image = stable_diffusion_img2img(prompt=prompt,image=initial_image,strength=strength,guidance_scale=guidance_scale,num_inference_steps=num_inference_steps,height=height,width=width)[0]
+
+# Display the refined image
+display(refined_image[0])
+
+torch.xpu.empty_cache()
+</pre>
+</div>
+<br>
+<p>List of currently installed packages, everything works [torch torchvision/audio stable-diffusion]
+</p>
+<div class="code-box">
+<pre>
+(xpu) C:\Users\user>pip list
+Package                   Version
+------------------------- ----------------------
+accelerate                1.2.0
+anyio                     4.7.0
+argon2-cffi               23.1.0
+argon2-cffi-bindings      21.2.0
+arrow                     1.3.0
+asttokens                 3.0.0
+async-lru                 2.0.4
+attrs                     24.2.0
+babel                     2.16.0
+beautifulsoup4            4.12.3
+bleach                    6.2.0
+certifi                   2024.8.30
+cffi                      1.17.1
+charset-normalizer        3.3.2
+colorama                  0.4.6
+comm                      0.2.2
+contourpy                 1.2.1
+cycler                    0.12.1
+debugpy                   1.8.9
+decorator                 5.1.1
+defusedxml                0.7.1
+diffusers                 0.31.0
+executing                 2.1.0
+fastjsonschema            2.21.1
+filelock                  3.16.1
+fonttools                 4.53.0
+fqdn                      1.5.1
+fsspec                    2024.10.0
+h11                       0.14.0
+httpcore                  1.0.7
+httpx                     0.28.1
+huggingface-hub           0.26.5
+idna                      3.10
+importlib_metadata        8.5.0
+intel-cmplr-lib-rt        2025.0.2
+intel-cmplr-lib-ur        2025.0.2
+intel-cmplr-lic-rt        2025.0.2
+intel-sycl-rt             2025.0.2
+IProgress                 0.4
+ipykernel                 6.29.5
+ipython                   8.30.0
+isoduration               20.11.0
+jedi                      0.19.2
+Jinja2                    3.1.4
+json5                     0.10.0
+jsonpointer               3.0.0
+jsonschema                4.23.0
+jsonschema-specifications 2024.10.1
+jupyter_client            8.6.3
+jupyter_core              5.7.2
+jupyter-events            0.10.0
+jupyter-lsp               2.2.5
+jupyter_server            2.14.2
+jupyter_server_terminals  0.5.3
+jupyterlab                4.3.2
+jupyterlab_pygments       0.3.0
+jupyterlab_server         2.27.3
+kiwisolver                1.4.5
+MarkupSafe                2.1.5
+matplotlib                3.9.0
+matplotlib-inline         0.1.7
+mistune                   3.0.2
+mpmath                    1.3.0
+nbclient                  0.10.1
+nbconvert                 7.16.4
+nbformat                  5.10.4
+nest-asyncio              1.6.0
+networkx                  3.4.2
+notebook_shim             0.2.4
+numpy                     2.1.2
+overrides                 7.7.0
+packaging                 24.1
+pandocfilters             1.5.1
+parso                     0.8.4
+pillow                    11.0.0
+pip                       24.2
+platformdirs              4.3.6
+prometheus_client         0.21.1
+prompt_toolkit            3.0.48
+psutil                    6.1.0
+pure_eval                 0.2.3
+pycparser                 2.22
+Pygments                  2.18.0
+pyparsing                 3.1.2
+python-dateutil           2.9.0
+python-json-logger        2.0.7
+pywin32                   308
+pywinpty                  2.0.14
+PyYAML                    6.0.2
+pyzmq                     26.2.0
+referencing               0.35.1
+regex                     2024.11.6
+requests                  2.32.3
+rfc3339-validator         0.1.4
+rfc3986-validator         0.1.1
+rpds-py                   0.22.3
+safetensors               0.4.5
+Send2Trash                1.8.3
+setuptools                75.1.0
+six                       1.16.0
+sniffio                   1.3.1
+soupsieve                 2.6
+stack-data                0.6.3
+sympy                     1.13.1
+tcmlib                    1.2.0
+terminado                 0.18.1
+tinycss2                  1.4.0
+tokenizers                0.21.0
+torch                     2.6.0.dev20241206+xpu
+torchaudio                2.5.0.dev20241206+xpu
+torchdata                 0.10.0.dev20241206+cpu
+torchvision               0.20.0.dev20241206+xpu
+tornado                   6.4.2
+tqdm                      4.67.1
+traitlets                 5.14.3
+transformers              4.47.0
+types-python-dateutil     2.9.0.20241206
+typing_extensions         4.12.2
+umf                       0.9.1
+uri-template              1.3.0
+urllib3                   2.2.3
+wcwidth                   0.2.13
+webcolors                 24.11.1
+webencodings              0.5.1
+websocket-client          1.8.0
+wheel                     0.44.0
+zipp                      3.21.0
+</pre>
+</div>
+<br>
+
+</div>
+</body>
+</html>
