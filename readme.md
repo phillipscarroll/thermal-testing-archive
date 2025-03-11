@@ -47,7 +47,6 @@ As you approach 0.8 Watts Per mm Squared high performance coolers are required. 
 | RX 570           | 232         | 150       | 0.6465               |
 | GTX Titan Z      | 561         | 375       | 0.6684               |
 | RX 7900 XTX      | 529         | 355       | 0.6710               |
-| RX 7900 XTX      | 529         | 355       | 0.6710               |
 | RTX 4070         | 294         | 200       | 0.6802               |
 | RX 6700 XT       | 335         | 230       | 0.6865               |
 | ARC B580         | 272         | 190       | 0.6985               |
