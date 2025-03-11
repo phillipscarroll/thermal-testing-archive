@@ -68,8 +68,6 @@ As you approach 0.8 Watts Per mm Squared high performance coolers are required. 
 | RX 7600 XT       | 204         | 190       | 0.9313               |
 | RTX 4070 Ti      | 294         | 285       | 0.9693               |
 
-Here is the converted HTML to Markdown:
-
 # 220w | 0.8764 watts per mm sq
 
 | Manufacturer | Thermal Interface | Wattage | Die mm/sq | Watt mm/sq | GPU Over Ambient c | Hotspot Over Ambient c | Sum Over Ambient c | Testing Link |
