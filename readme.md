@@ -1,6 +1,6 @@
 ### Thermal Testing Archive
 
-I had for some time a website and youtube archive of thousands of hours of thermal testing. I not longer invest time in testing as there are a ton of channels and groups doing this now but I wanted somewhere to park my data.
+I ran a website and youtube archiving of thousands of hours of my own thermal testing. I no longer invest time in testing as there are a large number of channels and groups doing this now but I wanted somewhere to park my data.
 
 # GPU Thermal Density
 
