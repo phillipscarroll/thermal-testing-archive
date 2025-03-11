@@ -2,6 +2,77 @@
 
 I had for some time a website and youtube archive of thousands of hours of thermal testing. I not longer invest time in testing as there are a ton of channels and groups doing this now but I wanted somewhere to park my data.
 
+
+
+
+
+# GPU Thermal Density
+
+Looking at wattage is not a great indicator of how easy or hard it will be to cool a GPU. 300 watts on a small die is nearly impossible to cool vs 300 watts on a large die if the coolers are the same size. I will often use "Watts Per mm Squared" as a good starting point to understand what type of cooling performance a GPU die will require and in a lot of cases which thermal paste/interface I will plan on using.
+
+Watts Per mm Squared = TDP / Die Area mm
+
+As you approach 0.8 Watts Per mm Squared high performance coolers are required. Over 1.0 Watts Per mm Squared is typically what you see in overclocked power limit raised profiles.
+
+| GPU Die          | Die Area mm | TDP Watts | Watts Per mm Squared |
+|------------------|-------------|-----------|----------------------|
+| RTX 2060         | 445         | 160       | 0.3595               |
+| GTX 1650         | 200         | 075       | 0.3750               |
+| RTX 2060 SUPER   | 445         | 175       | 0.3932               |
+| RTX 2070         | 445         | 175       | 0.3932               |
+| RTX 2070 SUPER   | 545         | 215       | 0.3944               |
+| RTX 2080         | 545         | 215       | 0.3944               |
+| GTX 1660         | 284         | 120       | 0.4225               |
+| GTX 1660 Ti      | 284         | 120       | 0.4225               |
+| ARC A580         | 406         | 175       | 0.4310               |
+| GTX 1660 SUPER   | 284         | 125       | 0.4401               |
+| RTX 3060 Ti      | 392         | 175       | 0.4464               |
+| RTX 2080 SUPER   | 545         | 250       | 0.4587               |
+| R9 FURY          | 596         | 275       | 0.4614               |
+| RTX 3050         | 276         | 130       | 0.4710               |
+| GTX 1070         | 314         | 150       | 0.4777               |
+| RX 7900 GRE      | 529         | 260       | 0.4914               |
+| RTX 3080         | 628         | 320       | 0.5095               |
+| GTX 1080 Ti      | 471         | 250       | 0.5307               |
+| Titan Xp         | 471         | 250       | 0.5307               |
+| ARC A750         | 406         | 225       | 0.5541               |
+| ARC A770         | 406         | 225       | 0.5541               |
+| RX 6600          | 237         | 132       | 0.5569               |
+| RTX 3080 Ti      | 628         | 350       | 0.5573               |
+| RTX 3090         | 628         | 350       | 0.5573               |
+| RTX 3070         | 392         | 220       | 0.5612               |
+| RX 7900 XT       | 529         | 300       | 0.5671               |
+| GTX 1050         | 132         | 075       | 0.5681               |
+| GTX 1050 Ti      | 132         | 075       | 0.5681               |
+| GTX 1080         | 314         | 180       | 0.5732               |
+| Vega 64          | 495         | 295       | 0.5959               |
+| GTX 1060         | 200         | 120       | 0.6000               |
+| RTX 3060         | 276         | 170       | 0.6159               |
+| RX 570           | 232         | 150       | 0.6465               |
+| GTX Titan Z      | 561         | 375       | 0.6684               |
+| RX 7900 XTX      | 529         | 355       | 0.6710               |
+| RX 7900 XTX      | 529         | 355       | 0.6710               |
+| RTX 4070         | 294         | 200       | 0.6802               |
+| RX 6700 XT       | 335         | 230       | 0.6865               |
+| ARC B580         | 272         | 190       | 0.6985               |
+| RX 7700 XT       | 346         | 245       | 0.7080               |
+| RTX 3090 Ti      | 628         | 450       | 0.7165               |
+| RTX 4060         | 159         | 115       | 0.7232               |
+| RTX 4090         | 609         | 450       | 0.7389               |
+| RTX 3070 Ti      | 392         | 290       | 0.7397               |
+| RTX 4070 SUPER   | 294         | 220       | 0.7482               |
+| RTX 4070 Ti SUPER| 379         | 285       | 0.7519               |
+| RX 7800 XT       | 346         | 263       | 0.7601               |
+| RX 580           | 232         | 185       | 0.7974               |
+| RX 7600          | 204         | 165       | 0.8088               |
+| RTX 4080         | 379         | 320       | 0.8443               |
+| RTX 4080 SUPER   | 379         | 320       | 0.8443               |
+| RTX 4060 Ti      | 188         | 160       | 0.8510               |
+| RX 5700 XT       | 251         | 225       | 0.8964               |
+| RX 5700 XT       | 251         | 225       | 0.8964               |
+| RX 7600 XT       | 204         | 190       | 0.9313               |
+| RTX 4070 Ti      | 294         | 285       | 0.9693               |
+
 # 220w | 0.8764 watts per mm sq
 
 | Manufacturer    | Thermal Interface                                | Wattage | Die mm/sq | Watt mm/sq | GPU Over Ambient c | Hotspot Over Ambient c | Sum Over Ambient c | Testing Link                                                     |
